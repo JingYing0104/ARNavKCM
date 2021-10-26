@@ -14,6 +14,7 @@ public class SliderMenuScript : MonoBehaviour
             if(animator != null)
             {
                 bool isOpen = animator.GetBool("show");
+                AudioManager.instance.AudioClick();
                 animator.SetBool("show", !isOpen);
             }
         }

@@ -12,10 +12,12 @@ public class minimaptogger : MonoBehaviour
         if (fullmap)
         {
             fullmap = false;
+            AudioManager.instance.AudioClick();
             fullscreenMap.SetActive(false);
         }else
         {
             fullmap = true;
+            AudioManager.instance.AudioClick();
             fullscreenMap.SetActive(true);
         }
     }

@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class navigateManager : MonoBehaviour
 {
-    // public static navigateManager instance;
-
+   
      public Transform[] destinations;
      public Transform person;
      public NavMeshPath Path;
@@ -52,8 +51,6 @@ public class navigateManager : MonoBehaviour
 
     private void Awake()
     {
-       // instance = this;
-
         QRresult = PlayerPrefs.GetString("QRResult");
     }
 
@@ -113,6 +110,7 @@ public class navigateManager : MonoBehaviour
 
     public void OnClickDest0Btn()
         {
+            AudioManager.instance.AudioClick();
             if (isDestinationSet)
             {
                 targetpin.gameObject.SetActive(false);
@@ -124,6 +122,7 @@ public class navigateManager : MonoBehaviour
     
         public void OnClickDest1Btn()
         {
+            AudioManager.instance.AudioClick();
             if (isDestinationSet)
             {
                 targetpin.gameObject.SetActive(false);
@@ -135,6 +134,7 @@ public class navigateManager : MonoBehaviour
 
         public void OnClickDest2Btn()
         {
+            AudioManager.instance.AudioClick();
             if (isDestinationSet)
             {
                 targetpin.gameObject.SetActive(false);
@@ -145,6 +145,7 @@ public class navigateManager : MonoBehaviour
 
         public void OnClickDest3Btn()
         {
+            AudioManager.instance.AudioClick();
             if (isDestinationSet)
             {
                 targetpin.gameObject.SetActive(false);
@@ -155,6 +156,7 @@ public class navigateManager : MonoBehaviour
 
         public void OnClickDest4Btn()
         {
+            AudioManager.instance.AudioClick();
             if (isDestinationSet)
             {
                 targetpin.gameObject.SetActive(false);

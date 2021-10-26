@@ -18,7 +18,7 @@ public class QRcodeScanner : MonoBehaviour
     private TextMeshProUGUI textout;
 
     [SerializeField]
-    private GameObject label;
+    private GameObject youarehere;
 
     [SerializeField]
     private RectTransform scanzone;
@@ -39,7 +39,7 @@ public class QRcodeScanner : MonoBehaviour
         textout.SetText("");
         GoBtn.SetActive(false);
         scanBtn.SetActive(true);
-        label.SetActive(false);
+        youarehere.SetActive(false);
     }
 
     void Start()
@@ -100,6 +100,7 @@ public class QRcodeScanner : MonoBehaviour
 
         public void OnClickScan()
         {
+            AudioManager.instance.AudioClick();
             Scan();
         }
 
@@ -113,7 +114,7 @@ public class QRcodeScanner : MonoBehaviour
                 if(result != null)
                 {
                     textout.text = result.Text;
-                    label.SetActive(true);
+                    youarehere.SetActive(true);
                     scanBtn.SetActive(false);
                     GoBtn.SetActive(true);
                     PlayerPrefs.SetString("QRResult", result.Text);
