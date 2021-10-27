@@ -67,6 +67,9 @@ public class navigateManager : MonoBehaviour
 
     void Update()
     {
+        Screen.sleepTimeout = (int)0f;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         if (QRresult == "Starting Point 1")
         {
             start = startingpoints[0];
