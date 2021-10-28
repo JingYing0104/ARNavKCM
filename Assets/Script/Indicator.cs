@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class Indicator : MonoBehaviour
 {
-    [SerializeField] private IndicatorType indicatorType;
-    private Image indicatorImage;
-    private Text distanceText;
+    [SerializeField]
+     IndicatorType indicatorType;
 
-    /// <summary>
-    /// Gets if the game object is active in hierarchy.
-    /// </summary>
+    private Image indicatorImage;
+    [SerializeField] Text distanceText;
+
+    private void Awake()
+    {
+        indicatorImage = transform.GetComponent<Image>();
+      
+    }
+
     public bool Active
     {
         get
@@ -20,9 +25,6 @@ public class Indicator : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Gets the indicator type
-    /// </summary>
     public IndicatorType Type
     {
         get
@@ -31,43 +33,19 @@ public class Indicator : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        indicatorImage = transform.GetComponent<Image>();
-        distanceText = transform.GetComponentInChildren<Text>();
-    }
-
-    /// <summary>
-    /// Sets the image color for the indicator.
-    /// </summary>
-    /// <param name="color"></param>
-    public void SetImageColor(Color color)
-    {
-        indicatorImage.color = color;
-    }
-
-    /// <summary>
-    /// Sets the distance text for the indicator.
-    /// </summary>
-    /// <param name="value"></param>
+   
     public void SetDistanceText(float value)
     {
         distanceText.text = value >= 0 ? Mathf.Floor(value) + " m" : "";
     }
 
-    /// <summary>
-    /// Sets the distance text rotation of the indicator.
-    /// </summary>
-    /// <param name="rotation"></param>
+  
     public void SetTextRotation(Quaternion rotation)
     {
         distanceText.rectTransform.rotation = rotation;
     }
 
-    /// <summary>
-    /// Sets the indicator as active or inactive.
-    /// </summary>
-    /// <param name="value"></param>
+   
     public void Activate(bool value)
     {
         transform.gameObject.SetActive(value);
@@ -76,7 +54,7 @@ public class Indicator : MonoBehaviour
 
 public enum IndicatorType
 {
-   
+    BOX,
     ARROW
 }
 

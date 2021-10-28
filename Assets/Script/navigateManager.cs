@@ -33,14 +33,20 @@ public class navigateManager : MonoBehaviour
     Camera arCamera;
     [SerializeField]
     LinePool arLinePool;
+    [SerializeField]
+    Target targetpoint;
     
     [SerializeField]
     float distancetoEndNavigation;
     [SerializeField]
     float arlineHeight;
+    [SerializeField]
+    float distanceToIncreaseTargetPoint;
    
   
     bool isDestinationSet = false;
+    int targetpointindex = -1;
+    Vector3[] currentPathPoints;
 
     public Transform[] arPin;
     public Transform[] minimapPin;
@@ -98,6 +104,9 @@ public class navigateManager : MonoBehaviour
 
         if (isDestinationSet)
         {
+            UpdateCurrentPoint();
+            UpdateOffScreenPointerVisibility();
+
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
                 EndNavigation();
@@ -185,6 +194,10 @@ public class navigateManager : MonoBehaviour
         arLinePool.SetLinePositions(Path.corners);
         topdownlinepool.SetLinePositions(Path.corners);
 
+        currentPathPoints = Path.corners;
+        targetpointindex = 1;
+        targetpoint.enabled = true;
+        targetpoint.transform.position = currentPathPoints[targetpointindex];
        
     }
 
@@ -203,8 +216,34 @@ public class navigateManager : MonoBehaviour
      
         topdownlinepool.HideLine();
         arLinePool.HideLine();
+
+        currentPathPoints = null;
+        targetpointindex = -1;
+        targetpoint.enabled = false;
    
         
+    }
+
+    private void UpdateOffScreenPointerVisibility()
+    {
+        Vector3 targetPositionScreenPoint = arCamera.WorldToScreenPoint(targetpoint.transform.position);
+        bool isOffScreen = targetPositionScreenPoint.x <= 0 || targetPositionScreenPoint.x >= Screen.width ||
+            targetPositionScreenPoint.y <= 0 || targetPositionScreenPoint.y >= Screen.height;
+
+        targetpoint.enabled = isOffScreen;
+
+    }
+
+    private void UpdateCurrentPoint()
+    {
+        if (targetpointindex < currentPathPoints.Length - 2)
+        {
+            if (Vector3.Distance(person.position, currentPathPoints[targetpointindex]) < distanceToIncreaseTargetPoint)
+            {
+                targetpointindex++;
+                targetpoint.transform.position = currentPathPoints[targetpointindex];
+            }
+        }
     }
 
     private void Deactivate()
