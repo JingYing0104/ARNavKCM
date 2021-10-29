@@ -1058,8 +1058,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 302.6156}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: -117.9, y: 302}
+  m_SizeDelta: {x: 66.117, y: 74.5531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235237373
 MonoBehaviour:
@@ -1085,7 +1085,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -1431,7 +1431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323835525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.37, y: 0, z: 19.37}
+  m_LocalPosition: {x: 16.37, y: 0, z: 12.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 645344981}
@@ -2708,6 +2708,8 @@ MonoBehaviour:
   arsessionorigin: {fileID: 532309953}
   startpos: {x: 0, y: 0, z: 0}
   destinationText: {fileID: 2092987981}
+  distanceText: {fileID: 1290289446}
+  toText: {fileID: 235237373}
   topdownCamera: {fileID: 708781669}
   topdownlinepool: {fileID: 1586110135}
   arCamera: {fileID: 399962912}
@@ -5054,8 +5056,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234.00006, y: 302.6156}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: -290.19885, y: 302}
+  m_SizeDelta: {x: 111.9134, y: 74.5531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290289446
 MonoBehaviour:
@@ -5081,7 +5083,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -6334,6 +6336,7 @@ MonoBehaviour:
   audioSource: {fileID: 1628779578}
   clips:
   - {fileID: 8300000, guid: b7af1670b2ad64e629e097292c05936e, type: 3}
+  - {fileID: 8300000, guid: 106f59718f2134714ad961b9265e621e, type: 3}
 --- !u!4 &1628779580
 Transform:
   m_ObjectHideFlags: 0
@@ -7885,8 +7888,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114.25043, y: -1}
-  m_SizeDelta: {x: 164.5061, y: 76.553}
+  m_AnchoredPosition: {x: 120.00004, y: -2}
+  m_SizeDelta: {x: 177.3054, y: 74.553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092987981
 MonoBehaviour:

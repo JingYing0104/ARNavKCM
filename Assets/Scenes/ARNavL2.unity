@@ -252,6 +252,7 @@ MonoBehaviour:
   audioSource: {fileID: 7866381}
   clips:
   - {fileID: 8300000, guid: b7af1670b2ad64e629e097292c05936e, type: 3}
+  - {fileID: 8300000, guid: 106f59718f2134714ad961b9265e621e, type: 3}
 --- !u!4 &7866383
 Transform:
   m_ObjectHideFlags: 0
@@ -4451,6 +4452,8 @@ MonoBehaviour:
   arsessionorigin: {fileID: 1284948076}
   startpos: {x: 0, y: 0, z: 0}
   destinationText: {fileID: 1561036221}
+  distanceText: {fileID: 984860830}
+  toText: {fileID: 1874425732}
   topdownCamera: {fileID: 1759550465}
   topdownlinepool: {fileID: 750126158}
   arCamera: {fileID: 1879639332}
@@ -4837,8 +4840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234.00006, y: 302.6156}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: -290.19885, y: 305.83978}
+  m_SizeDelta: {x: 112.448, y: 62.2524}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984860830
 MonoBehaviour:
@@ -4864,7 +4867,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -6425,8 +6428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108, y: -2}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: 120, y: -2}
+  m_SizeDelta: {x: 173.2363, y: 74.553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561036221
 MonoBehaviour:
@@ -6452,7 +6455,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -7174,8 +7177,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 302.6156}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: -117.9, y: 302}
+  m_SizeDelta: {x: 71.3607, y: 74.5531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1874425732
 MonoBehaviour:
@@ -7201,7 +7204,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4

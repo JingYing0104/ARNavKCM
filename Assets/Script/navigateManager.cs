@@ -25,6 +25,10 @@ public class navigateManager : MonoBehaviour
 
     [SerializeField]
     Text destinationText;
+    [SerializeField]
+    Text distanceText;
+    [SerializeField]
+    Text toText;
 
     [SerializeField]
     Camera topdownCamera;
@@ -109,11 +113,15 @@ public class navigateManager : MonoBehaviour
             UpdateCurrentPoint();
             UpdateOffScreenPointerVisibility();
 
+            distanceText.text = Mathf.Round(Vector3.Distance(person.position, target.position)).ToString() + " m";
+
+
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
                 EndNavigation();
             }
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("NavMain");
@@ -190,7 +198,7 @@ public class navigateManager : MonoBehaviour
           targetminimapPin = minimapPin[minimapindex];
           particleSystem = particleSystems[psindex];
 
-         destinationText.text = target.name;
+          destinationText.text = target.name;
          
           targetpin.gameObject.SetActive(true);
           targetminimapPin.gameObject.SetActive(true);
@@ -214,11 +222,15 @@ public class navigateManager : MonoBehaviour
 
         isDestinationSet = false;
 
-       
-            targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
-            particleSystem.Play();
+        distanceText.text = "You";
+        toText.fontStyle = FontStyle.Bold;
+        toText.text = "are";
+        destinationText.text = "reached";
+        AudioManager.instance.Audioreached();
+        targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
+        particleSystem.Play();
 
-            Invoke("Deactivate", 5.0f);
+        Invoke("Deactivate", 5.0f);
      
         topdownlinepool.HideLine();
         arLinePool.HideLine();
