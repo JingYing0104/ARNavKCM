@@ -218,6 +218,7 @@ public class navigateManager : MonoBehaviour
 
         isDestinationSet = false;
 
+        AudioManager.instance.Audioreached();
        
             targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
             particleSystem.Play();

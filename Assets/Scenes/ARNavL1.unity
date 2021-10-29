@@ -7248,6 +7248,7 @@ MonoBehaviour:
   audioSource: {fileID: 1743158469}
   clips:
   - {fileID: 8300000, guid: b7af1670b2ad64e629e097292c05936e, type: 3}
+  - {fileID: 8300000, guid: 106f59718f2134714ad961b9265e621e, type: 3}
 --- !u!4 &1743158471
 Transform:
   m_ObjectHideFlags: 0
