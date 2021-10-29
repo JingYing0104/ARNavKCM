@@ -1051,14 +1051,13 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
-  m_Children:
-  - {fileID: 2092987980}
+  m_Children: []
   m_Father: {fileID: 267344291}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 302.6156}
+  m_AnchoredPosition: {x: 114, y: 302.6156}
   m_SizeDelta: {x: 192.0029, y: 74.5531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235237373
@@ -1084,8 +1083,8 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
-    m_FontStyle: 0
-    m_BestFit: 0
+    m_FontStyle: 1
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -1094,7 +1093,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: to
+  m_Text: Destination
 --- !u!222 &235237374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1580,6 +1579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullscreenMap: {fileID: 1917144513}
+  offscreenarrow: {fileID: 1064577533}
 --- !u!114 &370475980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 614262989}
   - component: {fileID: 614262988}
   m_Layer: 5
-  m_Name: Leeden
+  m_Name: The Leeden Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,7 +2628,9 @@ MonoBehaviour:
   topdownlinepool: {fileID: 1586110135}
   arCamera: {fileID: 399962912}
   arLinePool: {fileID: 228066380}
-  targetpoint: {fileID: 0}
+  targetpoint: {fileID: 487985599}
+  distancetext: {fileID: 1290289446}
+  destinationtext: {fileID: 235237373}
   distancetoEndNavigation: 3
   arlineHeight: -0.5
   distanceToIncreaseTargetPoint: 0
@@ -4970,8 +4972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234.00006, y: 302.6156}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
+  m_AnchoredPosition: {x: -191, y: 302.6156}
+  m_SizeDelta: {x: 144.5086, y: 74.5531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290289446
 MonoBehaviour:
@@ -4997,7 +4999,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -5006,7 +5008,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Distance
+  m_Text: Select
 --- !u!222 &1290289447
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7104,7 +7106,7 @@ GameObject:
   - component: {fileID: 1873389810}
   - component: {fileID: 1873389809}
   m_Layer: 5
-  m_Name: Myeongdong
+  m_Name: Myeongdong Topokki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7767,85 +7769,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089245432}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2092987979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2092987980}
-  - component: {fileID: 2092987982}
-  - component: {fileID: 2092987981}
-  m_Layer: 5
-  m_Name: place text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2092987980
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092987979}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 235237372}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108, y: -2}
-  m_SizeDelta: {x: 192.0029, y: 74.5531}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2092987981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092987979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Destination
---- !u!222 &2092987982
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092987979}
-  m_CullTransparentMesh: 1
 --- !u!1 &2099396093
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,7 +7877,7 @@ GameObject:
   - component: {fileID: 2110024276}
   - component: {fileID: 2110024275}
   m_Layer: 5
-  m_Name: Gintell
+  m_Name: Gintell Rest and Go
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

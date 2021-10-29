@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class navigateManager : MonoBehaviour
 {
@@ -22,7 +20,7 @@ public class navigateManager : MonoBehaviour
     public Transform start;
     public Transform arsessionorigin;
     public Vector3 startpos;
-  
+
 
     [SerializeField]
     Camera topdownCamera;
@@ -35,7 +33,12 @@ public class navigateManager : MonoBehaviour
     LinePool arLinePool;
     [SerializeField]
     Target targetpoint;
-    
+
+  [SerializeField]
+    Text distancetext;
+    [SerializeField]
+    Text destinationtext;
+
     [SerializeField]
     float distancetoEndNavigation;
     [SerializeField]
@@ -85,16 +88,20 @@ public class navigateManager : MonoBehaviour
         else if (QRresult == "Starting Point 2")
         {
             start = startingpoints[1];
+            topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         }
         else if (QRresult == "Starting Point 3")
         {
             start = startingpoints[2];
+            topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         }
         else if (QRresult == "Starting Point 4")
         {
             start = startingpoints[3];
+            topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
+
         }
         startpos = new Vector3(start.position.x, start.position.y, start.position.z);
         arsessionorigin.transform.position = startpos;
@@ -107,6 +114,7 @@ public class navigateManager : MonoBehaviour
             UpdateCurrentPoint();
             UpdateOffScreenPointerVisibility();
 
+            distancetext.text = Mathf.Floor(Vector3.Distance(person.position, target.position)).ToString() + " m to";
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
                 EndNavigation();
@@ -185,6 +193,8 @@ public class navigateManager : MonoBehaviour
           targetpin = arPin[pinindex];
           targetminimapPin = minimapPin[minimapindex];
           particleSystem = particleSystems[psindex];
+
+        destinationtext.text = target.name;
          
           targetpin.gameObject.SetActive(true);
           targetminimapPin.gameObject.SetActive(true);
