@@ -4450,7 +4450,6 @@ MonoBehaviour:
   start: {fileID: 0}
   arsessionorigin: {fileID: 1284948076}
   startpos: {x: 0, y: 0, z: 0}
-  destinationText: {fileID: 1561036221}
   topdownCamera: {fileID: 1759550465}
   topdownlinepool: {fileID: 750126158}
   arCamera: {fileID: 1879639332}

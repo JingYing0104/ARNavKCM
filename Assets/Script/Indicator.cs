@@ -9,12 +9,12 @@ public class Indicator : MonoBehaviour
      IndicatorType indicatorType;
 
     private Image indicatorImage;
-    private Text distanceText;
+    [SerializeField] Text distanceText;
 
     private void Awake()
     {
         indicatorImage = transform.GetComponent<Image>();
-        distanceText = transform.GetComponent<Text>();
+      
     }
 
     public bool Active

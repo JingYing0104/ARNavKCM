@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class navigateManager : MonoBehaviour
 {
@@ -22,9 +22,7 @@ public class navigateManager : MonoBehaviour
     public Transform start;
     public Transform arsessionorigin;
     public Vector3 startpos;
-
-    [SerializeField]
-    Text destinationText;
+  
 
     [SerializeField]
     Camera topdownCamera;
@@ -130,9 +128,7 @@ public class navigateManager : MonoBehaviour
                 targetpin.gameObject.SetActive(false);
                 targetminimapPin.gameObject.SetActive(false);
             }
-
             setDestination(0,0,0,0);
-
     
         }
     
@@ -189,8 +185,6 @@ public class navigateManager : MonoBehaviour
           targetpin = arPin[pinindex];
           targetminimapPin = minimapPin[minimapindex];
           particleSystem = particleSystems[psindex];
-
-         destinationText.text = target.name;
          
           targetpin.gameObject.SetActive(true);
           targetminimapPin.gameObject.SetActive(true);
