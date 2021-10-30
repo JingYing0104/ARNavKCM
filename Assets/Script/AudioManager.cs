@@ -25,10 +25,25 @@ public class AudioManager : MonoBehaviour
         PlayAudio(1);
     }
 
+    public void AudioGoStraight()
+    {
+        PlayAudio(2);
+    }
+
+    public void AudioTurnLeft()
+    {
+        PlayAudio(3);
+    }
+
+    public void AudioTurnRight()
+    {
+        PlayAudio(4);
+    }
+
     public void PlayAudio(int index)
     {
         audioSource.clip = clips[index];
-        audioSource.Play();
+        audioSource.PlayOneShot(audioSource.clip);
         
     }
 }

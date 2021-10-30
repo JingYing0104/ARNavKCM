@@ -33,7 +33,7 @@ public class navigateManager : MonoBehaviour
     LinePool arLinePool;
     [SerializeField]
     Target targetpoint;
-
+     
   [SerializeField]
     Text distancetext;
     [SerializeField]
@@ -43,12 +43,12 @@ public class navigateManager : MonoBehaviour
     private GameObject directionGuide;
 
     [SerializeField]
-    GameObject directionImage;
+    Image directionImage;
     [SerializeField]
-    GameObject directionText;
+    Text directionText;
 
     [SerializeField]
-    Image[] directionImages;
+    Sprite[] directionImages;
 
     [SerializeField]
     float distancetoEndNavigation;
@@ -56,11 +56,12 @@ public class navigateManager : MonoBehaviour
     float arlineHeight;
     [SerializeField]
     float distanceToIncreaseTargetPoint;
-   
-  
+
+    bool PlayedAudio = false;
     bool isDestinationSet = false;
     int targetpointindex = -1;
     Vector3[] currentPathPoints;
+    Transform nextTarget;
 
     public Transform[] arPin;
     public Transform[] minimapPin;
@@ -90,6 +91,7 @@ public class navigateManager : MonoBehaviour
 
     void Update()
     {
+        
         Screen.sleepTimeout = (int)0f;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -133,7 +135,45 @@ public class navigateManager : MonoBehaviour
             
             distancetext.text = Mathf.Floor(Vector3.Distance(person.position, target.position)).ToString() + " m to";
 
-            //Vector3 direction = 
+            Vector3 direction = currentPathPoints[targetpointindex + 1] - targetpoint.transform.position;
+            Vector3 forward = targetpoint.transform.forward;
+            float angle = Vector3.SignedAngle(direction, forward, Vector3.up);
+
+            if (angle < -5.0f)
+            {
+                directionImage.sprite = directionImages[1];
+                directionText.text = "Turn Left";
+
+                if (!PlayedAudio)
+                {
+                    AudioManager.instance.AudioTurnLeft();
+                    PlayedAudio = true;
+                }
+
+            }
+            else if (angle > 5.0f)
+            {
+                directionImage.sprite = directionImages[2];
+                directionText.text = "Turn Right";
+
+                if (!PlayedAudio)
+                {
+                    AudioManager.instance.AudioTurnRight();
+                    PlayedAudio = true;
+                }
+
+            }
+            else
+            {
+                directionImage.sprite = directionImages[0];
+                directionText.text = "Go Straight";
+                if (!PlayedAudio)
+                {
+                    AudioManager.instance.AudioGoStraight();
+                    PlayedAudio = true;
+                }
+
+            }
 
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
@@ -142,6 +182,7 @@ public class navigateManager : MonoBehaviour
 
 
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("NavMain");
@@ -211,6 +252,7 @@ public class navigateManager : MonoBehaviour
     {
          
           isDestinationSet = true;
+          PlayedAudio = false;
 
           target = destinations[index];
           targetpin = arPin[pinindex];
@@ -250,6 +292,7 @@ public class navigateManager : MonoBehaviour
             
 
         isDestinationSet = false;
+        PlayedAudio = false;
 
         AudioManager.instance.Audioreached();
         distancetext.text = "You  are";
@@ -288,7 +331,10 @@ public class navigateManager : MonoBehaviour
             {
                 targetpointindex++;
                 targetpoint.transform.position = currentPathPoints[targetpointindex];
+                PlayedAudio = false;
+               
             }
+      
         }
     }
 

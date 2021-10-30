@@ -2712,9 +2712,12 @@ MonoBehaviour:
   distancetext: {fileID: 1290289446}
   destinationtext: {fileID: 235237373}
   directionGuide: {fileID: 966846203}
-  directionImage: {fileID: 0}
-  directionText: {fileID: 0}
-  directionImages: []
+  directionImage: {fileID: 1656249886}
+  directionText: {fileID: 392330483}
+  directionImages:
+  - {fileID: 21300000, guid: 8c0538158fabf4ffbbfdda6020c20734, type: 3}
+  - {fileID: 21300000, guid: 852908c44bb6d42bcb197b352fce67ad, type: 3}
+  - {fileID: 21300000, guid: 47bbdb96de5be4ed4864a9559de1add7, type: 3}
   distancetoEndNavigation: 3
   arlineHeight: -0.5
   distanceToIncreaseTargetPoint: 0
@@ -6411,6 +6414,9 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: b7af1670b2ad64e629e097292c05936e, type: 3}
   - {fileID: 8300000, guid: 106f59718f2134714ad961b9265e621e, type: 3}
+  - {fileID: 8300000, guid: 908280007ff634a93be60ed3f46c8c4e, type: 3}
+  - {fileID: 8300000, guid: a09dee142cacc4cfcb3b6c31bc331400, type: 3}
+  - {fileID: 8300000, guid: f32fbad9f423642e8a4482b587973e5a, type: 3}
 --- !u!4 &1628779580
 Transform:
   m_ObjectHideFlags: 0

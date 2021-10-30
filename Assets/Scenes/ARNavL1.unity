@@ -371,6 +371,12 @@ MonoBehaviour:
   distancetext: {fileID: 488647627}
   destinationtext: {fileID: 1726945207}
   directionGuide: {fileID: 690736358}
+  directionImage: {fileID: 1938060702}
+  directionText: {fileID: 916866018}
+  directionImages:
+  - {fileID: 21300000, guid: 8c0538158fabf4ffbbfdda6020c20734, type: 3}
+  - {fileID: 21300000, guid: 852908c44bb6d42bcb197b352fce67ad, type: 3}
+  - {fileID: 21300000, guid: 47bbdb96de5be4ed4864a9559de1add7, type: 3}
   distancetoEndNavigation: 3
   arlineHeight: -0.5
   distanceToIncreaseTargetPoint: 0.5
@@ -3491,7 +3497,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go Straight
+  m_Text: Turn Left
 --- !u!222 &916866019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7404,6 +7410,9 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: b7af1670b2ad64e629e097292c05936e, type: 3}
   - {fileID: 8300000, guid: 106f59718f2134714ad961b9265e621e, type: 3}
+  - {fileID: 8300000, guid: 908280007ff634a93be60ed3f46c8c4e, type: 3}
+  - {fileID: 8300000, guid: a09dee142cacc4cfcb3b6c31bc331400, type: 3}
+  - {fileID: 8300000, guid: f32fbad9f423642e8a4482b587973e5a, type: 3}
 --- !u!4 &1743158471
 Transform:
   m_ObjectHideFlags: 0
