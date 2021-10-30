@@ -40,6 +40,17 @@ public class navigateManager : MonoBehaviour
     Text destinationtext;
 
     [SerializeField]
+    private GameObject directionGuide;
+
+    [SerializeField]
+    GameObject directionImage;
+    [SerializeField]
+    GameObject directionText;
+
+    [SerializeField]
+    Image[] directionImages;
+
+    [SerializeField]
     float distancetoEndNavigation;
     [SerializeField]
     float arlineHeight;
@@ -61,6 +72,7 @@ public class navigateManager : MonoBehaviour
     private void Awake()
     {
         QRresult = PlayerPrefs.GetString("QRResult");
+        directionGuide.SetActive(false);
     }
 
 
@@ -71,7 +83,9 @@ public class navigateManager : MonoBehaviour
         arLinePool.LineHeight = arlineHeight;
         targetminimapPin.gameObject.SetActive(false);
         targetpin.gameObject.SetActive(false);
-        
+       
+
+
     }
 
     void Update()
@@ -111,14 +125,22 @@ public class navigateManager : MonoBehaviour
 
         if (isDestinationSet)
         {
+            directionGuide.SetActive(true);
+
             UpdateCurrentPoint();
             UpdateOffScreenPointerVisibility();
 
+            
             distancetext.text = Mathf.Floor(Vector3.Distance(person.position, target.position)).ToString() + " m to";
+
+            //Vector3 direction = 
+
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
                 EndNavigation();
             }
+
+
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -189,15 +211,17 @@ public class navigateManager : MonoBehaviour
     {
          
           isDestinationSet = true;
+
           target = destinations[index];
           targetpin = arPin[pinindex];
           targetminimapPin = minimapPin[minimapindex];
           particleSystem = particleSystems[psindex];
 
         destinationtext.text = target.name;
-         
-          targetpin.gameObject.SetActive(true);
-          targetminimapPin.gameObject.SetActive(true);
+
+        
+        targetpin.gameObject.SetActive(true);
+        targetminimapPin.gameObject.SetActive(true);
 
         
         NavMesh.CalculatePath(person.position, target.position, NavMesh.AllAreas, Path);
@@ -208,17 +232,28 @@ public class navigateManager : MonoBehaviour
         targetpointindex = 1;
         targetpoint.enabled = true;
         targetpoint.transform.position = currentPathPoints[targetpointindex];
-       
+
+        
+
     }
 
    
     public void EndNavigation()
     {
-        if (! isDestinationSet) return;
+        if (!isDestinationSet)
+        {
+            directionGuide.SetActive(false);
+            distancetext.text = "Select";
+            destinationtext.text = "Destination";
+            return;
+        }
+            
 
         isDestinationSet = false;
 
         AudioManager.instance.Audioreached();
+        distancetext.text = "You  are";
+        destinationtext.text = "reached";
        
             targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
             particleSystem.Play();
