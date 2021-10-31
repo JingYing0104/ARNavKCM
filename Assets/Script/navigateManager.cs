@@ -62,6 +62,7 @@ public class navigateManager : MonoBehaviour
     int targetpointindex = -1;
     Vector3[] currentPathPoints;
     Transform nextTarget;
+    bool isOffScreen;
 
     public Transform[] arPin;
     public Transform[] minimapPin;
@@ -127,53 +128,58 @@ public class navigateManager : MonoBehaviour
 
         if (isDestinationSet)
         {
-            directionGuide.SetActive(true);
-
+           
             UpdateCurrentPoint();
             UpdateOffScreenPointerVisibility();
 
             
             distancetext.text = Mathf.Floor(Vector3.Distance(person.position, target.position)).ToString() + " m to";
 
-            Vector3 direction = currentPathPoints[targetpointindex + 1] - targetpoint.transform.position;
-            Vector3 forward = targetpoint.transform.forward;
-            float angle = Vector3.SignedAngle(direction, forward, Vector3.up);
-
-            if (angle < -5.0f)
+            if (!isOffScreen)
             {
-                directionImage.sprite = directionImages[1];
-                directionText.text = "Turn Left";
+                directionGuide.SetActive(true);
 
-                if (!PlayedAudio)
+                Vector3 direction = currentPathPoints[targetpointindex + 1] - targetpoint.transform.position;
+                Vector3 forward = targetpoint.transform.forward;
+                float angle = Vector3.SignedAngle(direction, forward, Vector3.up);
+
+                if (angle < -5.0f)
                 {
-                    AudioManager.instance.AudioTurnLeft();
-                    PlayedAudio = true;
+                    directionImage.sprite = directionImages[1];
+                    directionText.text = "Turn Left";
+
+                    if (!PlayedAudio)
+                    {
+                        AudioManager.instance.AudioTurnLeft();
+                        PlayedAudio = true;
+                    }
+
                 }
-
-            }
-            else if (angle > 5.0f)
-            {
-                directionImage.sprite = directionImages[2];
-                directionText.text = "Turn Right";
-
-                if (!PlayedAudio)
+                else if (angle > 5.0f)
                 {
-                    AudioManager.instance.AudioTurnRight();
-                    PlayedAudio = true;
-                }
+                    directionImage.sprite = directionImages[2];
+                    directionText.text = "Turn Right";
 
-            }
-            else
-            {
-                directionImage.sprite = directionImages[0];
-                directionText.text = "Go Straight";
-                if (!PlayedAudio)
+                    if (!PlayedAudio)
+                    {
+                        AudioManager.instance.AudioTurnRight();
+                        PlayedAudio = true;
+                    }
+
+                }
+                else
                 {
-                    AudioManager.instance.AudioGoStraight();
-                    PlayedAudio = true;
-                }
+                    directionImage.sprite = directionImages[0];
+                    directionText.text = "Go Straight";
+                    if (!PlayedAudio)
+                    {
+                        AudioManager.instance.AudioGoStraight();
+                        PlayedAudio = true;
+                    }
 
+                }
             }
+            
 
             if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
             {
@@ -316,7 +322,7 @@ public class navigateManager : MonoBehaviour
     private void UpdateOffScreenPointerVisibility()
     {
         Vector3 targetPositionScreenPoint = arCamera.WorldToScreenPoint(targetpoint.transform.position);
-        bool isOffScreen = targetPositionScreenPoint.x <= 0 || targetPositionScreenPoint.x >= Screen.width ||
+        isOffScreen = targetPositionScreenPoint.x <= 0 || targetPositionScreenPoint.x >= Screen.width ||
             targetPositionScreenPoint.y <= 0 || targetPositionScreenPoint.y >= Screen.height;
 
         targetpoint.enabled = isOffScreen;
