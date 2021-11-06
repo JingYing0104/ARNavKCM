@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ManageScene : MonoBehaviour
 {
-    private AudioSource audioSourcebtn;
- 
-    private void Awake()
+
+    private void Start()
     {
-        audioSourcebtn = GetComponent<AudioSource>();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
+
     public void level1()
     {
         AudioManager.instance.AudioClick();
@@ -48,8 +51,5 @@ public class ManageScene : MonoBehaviour
         SceneManager.LoadScene("ARNavL3");
     }
 
-    IEnumerator Wait(float cliplength)
-    {
-        yield return new WaitForSeconds(cliplength);
-    }
+    
 }

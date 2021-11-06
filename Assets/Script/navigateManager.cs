@@ -43,9 +43,23 @@ public class navigateManager : MonoBehaviour
     private GameObject directionGuide;
 
     [SerializeField]
+    private GameObject destinationLabel;
+
+    [SerializeField]
+    private GameObject scroll;
+
+    [SerializeField]
+    private GameObject endNavBtn;
+
+    [SerializeField]
+    private GameObject continueNavBtn;
+
+    [SerializeField]
     Image directionImage;
     [SerializeField]
     Text directionText;
+    [SerializeField]
+    Text directiondistanceText;
 
     [SerializeField]
     Sprite[] directionImages;
@@ -61,20 +75,22 @@ public class navigateManager : MonoBehaviour
     bool isDestinationSet = false;
     int targetpointindex = -1;
     Vector3[] currentPathPoints;
-    Transform nextTarget;
+  
     bool isOffScreen;
 
     public Transform[] arPin;
     public Transform[] minimapPin;
     public ParticleSystem[] particleSystems;
 
-   
+    public GameObject PanelMenu;
 
 
     private void Awake()
     {
         QRresult = PlayerPrefs.GetString("QRResult");
         directionGuide.SetActive(false);
+        endNavBtn.SetActive(false);
+        continueNavBtn.SetActive(false);
     }
 
 
@@ -128,34 +144,61 @@ public class navigateManager : MonoBehaviour
 
         if (isDestinationSet)
         {
-           
+            destinationtext.text = target.name;
+
             UpdateCurrentPoint();
             UpdateOffScreenPointerVisibility();
 
             
             distancetext.text = Mathf.Floor(Vector3.Distance(person.position, target.position)).ToString() + " m to";
 
+            
             if (!isOffScreen)
             {
+                if (Vector3.Distance(person.position, target.position) <= distancetoEndNavigation)
+                {
+                    EndNavigation();
+                }
+
                 directionGuide.SetActive(true);
 
-                Vector3 direction = currentPathPoints[targetpointindex + 1] - targetpoint.transform.position;
-                Vector3 forward = targetpoint.transform.forward;
-                float angle = Vector3.SignedAngle(direction, forward, Vector3.up);
+                directiondistanceText.text = "in "+ Mathf.RoundToInt(Vector3.Distance(person.transform.position,targetpoint.transform.position)).ToString() + "m";
 
-                if (angle < -5.0f)
-                {
-                    directionImage.sprite = directionImages[1];
-                    directionText.text = "Turn Left";
+                //if (directiondistanceText.text == "in 30m")
+                //{
+                //    if (!PlayedAudio)
+                //    {
+                //        AudioManager.instance.AudioTurnLeft();
+                //        PlayedAudio = true;
+                //    }
 
-                    if (!PlayedAudio)
-                    {
-                        AudioManager.instance.AudioTurnLeft();
-                        PlayedAudio = true;
-                    }
+                //}
 
-                }
-                else if (angle > 5.0f)
+                //if (directiondistanceText.text == "in 30m")
+                //{
+                //    if (!PlayedAudio)
+                //    {
+                //        AudioManager.instance.AudioTurnLeft();
+                //        PlayedAudio = true;
+                //    }
+
+                //}
+
+                //if (directiondistanceText.text == "in 1m")
+                //{
+                //    if (!PlayedAudio)
+                //    {
+                //        PlayedAudio = true;
+                //    }
+
+                //}
+
+
+                Vector3 direction = currentPathPoints[targetpointindex+1] - targetpoint.transform.position;
+                Vector3 forward = arLinePool.transform.forward;
+                float angle = Vector3.SignedAngle(direction, forward, arLinePool.transform.up);
+
+                if (angle < -40.0f)
                 {
                     directionImage.sprite = directionImages[2];
                     directionText.text = "Turn Right";
@@ -163,6 +206,17 @@ public class navigateManager : MonoBehaviour
                     if (!PlayedAudio)
                     {
                         AudioManager.instance.AudioTurnRight();
+                        PlayedAudio = true;
+                    }
+                }
+                else if (angle > 40.0f)
+                {
+                    directionImage.sprite = directionImages[1];
+                    directionText.text = "Turn Left";
+
+                    if (!PlayedAudio)
+                    {
+                        AudioManager.instance.AudioTurnLeft();
                         PlayedAudio = true;
                     }
 
@@ -178,16 +232,12 @@ public class navigateManager : MonoBehaviour
                     }
 
                 }
-            }
-            
 
-            if (Vector3.Distance(person.position, target.position) < distancetoEndNavigation)
-            {
-                EndNavigation();
             }
-
 
         }
+
+       
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -258,6 +308,11 @@ public class navigateManager : MonoBehaviour
     {
          
           isDestinationSet = true;
+          endNavBtn.SetActive(true);
+          continueNavBtn.SetActive(true);
+          destinationLabel.SetActive(false);
+          scroll.SetActive(false);
+
           PlayedAudio = false;
 
           target = destinations[index];
@@ -304,19 +359,30 @@ public class navigateManager : MonoBehaviour
         distancetext.text = "You  are";
         destinationtext.text = "reached";
        
-            targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
-            particleSystem.Play();
+        targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
+        particleSystem.Play();
 
-            Invoke("Deactivate", 5.0f);
+        Invoke("Deactivate", 5.0f);
      
         topdownlinepool.HideLine();
         arLinePool.HideLine();
+       
 
         currentPathPoints = null;
         targetpointindex = -1;
         targetpoint.enabled = false;
-   
-        
+
+        Animator animator = PanelMenu.GetComponent<Animator>();
+        if (animator != null)
+        {
+            bool isOpen = animator.GetBool("show");
+            animator.SetBool("show", !isOpen);
+        }
+
+        continueNavBtn.SetActive(false);
+        directionGuide.SetActive(false);
+
+
     }
 
     private void UpdateOffScreenPointerVisibility()
@@ -331,23 +397,70 @@ public class navigateManager : MonoBehaviour
 
     private void UpdateCurrentPoint()
     {
-        if (targetpointindex < currentPathPoints.Length - 2)
+        if (targetpointindex < currentPathPoints.Length)
         {
-            if (Vector3.Distance(person.position, currentPathPoints[targetpointindex]) < distanceToIncreaseTargetPoint)
+            if (Vector3.Distance(person.position, currentPathPoints[targetpointindex]) <= distanceToIncreaseTargetPoint)
             {
                 targetpointindex++;
                 targetpoint.transform.position = currentPathPoints[targetpointindex];
                 PlayedAudio = false;
                
             }
-      
+
         }
+        else
+        {
+         //   currentPathPoints[targetpointindex +1] = target.transform.position;
+            directionImage.sprite = directionImages[0];
+            directionText.text = "Go Straight";
+            if (!PlayedAudio)
+            {
+                AudioManager.instance.AudioGoStraight();
+                PlayedAudio = true;
+            }
+
+        }
+
+
     }
 
     private void Deactivate()
     {
         targetpin.gameObject.SetActive(false);
         targetminimapPin.gameObject.SetActive(false);
+
+    }
+
+    public void stopNavigate()
+    {
+        AudioManager.instance.AudioClick();
+        isDestinationSet = false;
+
+        topdownlinepool.HideLine();
+        arLinePool.HideLine();
+       
+
+        destinationLabel.SetActive(true);
+        scroll.SetActive(true);
+        endNavBtn.SetActive(false);
+        continueNavBtn.SetActive(false);
+
+       
+        targetpin.gameObject.SetActive(false);
+        targetminimapPin.gameObject.SetActive(false);
+
+        directionGuide.SetActive(false);
+        distancetext.text = "Select";
+        destinationtext.text = "Destination";
+
+        target = null;
+        targetpin = null;
+        targetminimapPin = null;
+        particleSystem = null;
+
+        currentPathPoints = null;
+        targetpointindex = -1;
+        targetpoint.enabled = false;
 
     }
 }

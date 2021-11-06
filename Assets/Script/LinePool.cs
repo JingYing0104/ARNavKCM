@@ -12,6 +12,9 @@ public class LinePool : MonoBehaviour
     [SerializeField]
     int amountToPool;
 
+    [SerializeField]
+    GameObject Person;
+
     List<LineRenderer> linePool;
     List<GameObject> cornerPool;
 
@@ -41,7 +44,7 @@ public class LinePool : MonoBehaviour
     {
         if(cornerPrefab != null)
         {
-            GameObject endCorner = Instantiate(cornerPrefab, this.transform);
+            GameObject endCorner = Instantiate(cornerPrefab, transform.position,transform.rotation);
             endCorner.SetActive(false);
             cornerPool.Add(endCorner);
         }
