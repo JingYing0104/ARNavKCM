@@ -162,36 +162,8 @@ public class navigateManager : MonoBehaviour
 
                 directionGuide.SetActive(true);
 
-                directiondistanceText.text = "in "+ Mathf.RoundToInt(Vector3.Distance(person.transform.position,targetpoint.transform.position)).ToString() + "m";
-
-                //if (directiondistanceText.text == "in 30m")
-                //{
-                //    if (!PlayedAudio)
-                //    {
-                //        AudioManager.instance.AudioTurnLeft();
-                //        PlayedAudio = true;
-                //    }
-
-                //}
-
-                //if (directiondistanceText.text == "in 30m")
-                //{
-                //    if (!PlayedAudio)
-                //    {
-                //        AudioManager.instance.AudioTurnLeft();
-                //        PlayedAudio = true;
-                //    }
-
-                //}
-
-                //if (directiondistanceText.text == "in 1m")
-                //{
-                //    if (!PlayedAudio)
-                //    {
-                //        PlayedAudio = true;
-                //    }
-
-                //}
+                directiondistanceText.text = "in "+ Mathf.RoundToInt(Vector3.Distance(person.transform.position,
+                    targetpoint.transform.position)).ToString() + "m";
 
 
                 Vector3 direction = currentPathPoints[targetpointindex+1] - targetpoint.transform.position;
@@ -219,7 +191,6 @@ public class navigateManager : MonoBehaviour
                         AudioManager.instance.AudioTurnLeft();
                         PlayedAudio = true;
                     }
-
                 }
                 else
                 {
@@ -230,9 +201,7 @@ public class navigateManager : MonoBehaviour
                         AudioManager.instance.AudioGoStraight();
                         PlayedAudio = true;
                     }
-
                 }
-
             }
 
         }
@@ -362,6 +331,8 @@ public class navigateManager : MonoBehaviour
         targetpin.transform.GetComponent<Animator>().SetTrigger("Arrived");
         particleSystem.Play();
 
+        AudioManager.instance.AudioYouAreReached();
+
         Invoke("Deactivate", 5.0f);
      
         topdownlinepool.HideLine();
@@ -392,7 +363,6 @@ public class navigateManager : MonoBehaviour
             targetPositionScreenPoint.y <= 0 || targetPositionScreenPoint.y >= Screen.height;
 
         targetpoint.enabled = isOffScreen;
-
     }
 
     private void UpdateCurrentPoint()
@@ -403,14 +373,11 @@ public class navigateManager : MonoBehaviour
             {
                 targetpointindex++;
                 targetpoint.transform.position = currentPathPoints[targetpointindex];
-                PlayedAudio = false;
-               
+                PlayedAudio = false;    
             }
-
         }
         else
         {
-         //   currentPathPoints[targetpointindex +1] = target.transform.position;
             directionImage.sprite = directionImages[0];
             directionText.text = "Go Straight";
             if (!PlayedAudio)
@@ -418,10 +385,7 @@ public class navigateManager : MonoBehaviour
                 AudioManager.instance.AudioGoStraight();
                 PlayedAudio = true;
             }
-
         }
-
-
     }
 
     private void Deactivate()

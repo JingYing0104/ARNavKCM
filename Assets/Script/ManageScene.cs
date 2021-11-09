@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ManageScene : MonoBehaviour
 {
-
     private void Start()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -17,8 +16,7 @@ public class ManageScene : MonoBehaviour
     public void level1()
     {
         AudioManager.instance.AudioClick();
-        SceneManager.LoadScene("ScanqrcodeL1");
-        
+        SceneManager.LoadScene("ScanqrcodeL1"); 
     }
 
     public void level2()
@@ -50,6 +48,10 @@ public class ManageScene : MonoBehaviour
         AudioManager.instance.AudioClick();
         SceneManager.LoadScene("ARNavL3");
     }
-
-    
 }
+
+
+
+
+
+

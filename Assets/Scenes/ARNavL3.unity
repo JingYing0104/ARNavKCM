@@ -1276,7 +1276,6 @@ MonoBehaviour:
   arlinePrefab: {fileID: 6914262676196916547, guid: 5eb321ff424b68843bb920303c97f033, type: 3}
   cornerPrefab: {fileID: 0}
   amountToPool: 10
-  Person: {fileID: 170459035}
 --- !u!4 &228066381
 Transform:
   m_ObjectHideFlags: 0
@@ -6594,7 +6593,6 @@ MonoBehaviour:
   arlinePrefab: {fileID: 1611196703194768776, guid: f79e01ef0ab539644892e2245dbb851f, type: 3}
   cornerPrefab: {fileID: 0}
   amountToPool: 10
-  Person: {fileID: 0}
 --- !u!4 &1586110136
 Transform:
   m_ObjectHideFlags: 0
@@ -6876,6 +6874,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 908280007ff634a93be60ed3f46c8c4e, type: 3}
   - {fileID: 8300000, guid: a09dee142cacc4cfcb3b6c31bc331400, type: 3}
   - {fileID: 8300000, guid: f32fbad9f423642e8a4482b587973e5a, type: 3}
+  - {fileID: 8300000, guid: e95aa40a5984c4b3ba9840f56aef1334, type: 3}
 --- !u!4 &1628779580
 Transform:
   m_ObjectHideFlags: 0

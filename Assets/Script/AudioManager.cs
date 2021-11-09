@@ -40,6 +40,11 @@ public class AudioManager : MonoBehaviour
         PlayAudio(4);
     }
 
+    public void AudioYouAreReached()
+    {
+        PlayAudio(5);
+    }
+
     public void PlayAudio(int index)
     {
         audioSource.clip = clips[index];

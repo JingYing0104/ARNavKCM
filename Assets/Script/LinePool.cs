@@ -12,9 +12,6 @@ public class LinePool : MonoBehaviour
     [SerializeField]
     int amountToPool;
 
-    [SerializeField]
-    GameObject Person;
-
     List<LineRenderer> linePool;
     List<GameObject> cornerPool;
 

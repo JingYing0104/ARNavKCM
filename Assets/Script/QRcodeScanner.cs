@@ -18,7 +18,13 @@ public class QRcodeScanner : MonoBehaviour
     private TextMeshProUGUI textout;
 
     [SerializeField]
+    private TextMeshProUGUI level;
+
+    [SerializeField]
     private GameObject youarehere;
+
+    [SerializeField]
+    private GameObject wrongplace;
 
     [SerializeField]
     private RectTransform scanzone;
@@ -32,7 +38,10 @@ public class QRcodeScanner : MonoBehaviour
     [SerializeField]
     private GameObject scanBtn;
 
-    
+    [SerializeField]
+    private GameObject ScanAgainBtn;
+
+
 
     private void Awake()
     {
@@ -40,6 +49,8 @@ public class QRcodeScanner : MonoBehaviour
         GoBtn.SetActive(false);
         scanBtn.SetActive(true);
         youarehere.SetActive(false);
+        wrongplace.SetActive(false);
+        ScanAgainBtn.SetActive(false);
     }
 
     void Start()
@@ -104,8 +115,18 @@ public class QRcodeScanner : MonoBehaviour
             Scan();
         }
 
+    public void OnClickScanAgain()
+    {
+        AudioManager.instance.AudioClick();
+        ScanAgainBtn.SetActive(false);
+        wrongplace.SetActive(false);
+        scanBtn.SetActive(true);
+        textout.text = "";
+       
+    }
 
-        private void Scan()
+
+    private void Scan()
         {
             try
             {
@@ -113,14 +134,23 @@ public class QRcodeScanner : MonoBehaviour
                 Result result = barcodeReader.Decode(CamTexture.GetPixels32(), CamTexture.width, CamTexture.height);
                 if(result != null)
                 {
-                    textout.text = result.Text;
-                    youarehere.SetActive(true);
-                    scanBtn.SetActive(false);
-                    GoBtn.SetActive(true);
-                    PlayerPrefs.SetString("QRResult", result.Text);
-                
+                    if(result.Text.Substring(0,7).Equals(level.text))
+                    {
+                        textout.text = result.Text;
+                        youarehere.SetActive(true);
+                        scanBtn.SetActive(false);
+                        GoBtn.SetActive(true);
+                        PlayerPrefs.SetString("QRResult", result.Text);
+                    }
+                    else
+                     {
+                        wrongplace.SetActive(true);
+                        ScanAgainBtn.SetActive(true);
+                        textout.text = " Please go to the level that you selected.";
+                        
+                     }
 
-            }
+                }
                 else
                 {
                     textout.text = "FAILED TO READ QRCODE";
