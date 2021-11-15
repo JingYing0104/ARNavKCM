@@ -112,25 +112,25 @@ public class navigateManager : MonoBehaviour
         Screen.sleepTimeout = (int)0f;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        if (QRresult == "Starting Point 1")
+        if (QRresult.EndsWith("1"))
         {
             start = startingpoints[0];
             topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         }
-        else if (QRresult == "Starting Point 2")
+        else if (QRresult.EndsWith("2"))
         {
             start = startingpoints[1];
             topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         }
-        else if (QRresult == "Starting Point 3")
+        else if (QRresult.EndsWith("3"))
         {
             start = startingpoints[2];
             topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         }
-        else if (QRresult == "Starting Point 4")
+        else if (QRresult.EndsWith("4"))
         {
             start = startingpoints[3];
             topdownCamera.transform.eulerAngles = new Vector3(90, 0, 0);
